@@ -1,0 +1,53 @@
+@startuml
+
+
+abstract class Ship{
+- cargo : List<Container>
++ addToCargoList(Container):void;
++ isReadyForDeparture():boolean;
+}
+class Reefer extends Ship{
+- maxCargoWeight: int;
+- minTemp: int;
+
+
+}
+
+class Tanker extends Ship{
+- maxCargoVolume: int;
+
+}
+
+class MultiPurpose extends Ship{
+- maxNumberOfContainer: int;
+
+}
+
+enum ContainerType{
+FROZEN_FOOD,
+LIQUID,
+PACKAGE
+}
+
+
+class Container {
+- containerType: ContainerType;
+- certificate: String;
+- capacity: int;
+
+}
+
+class Customs {
+- shipList: List<Ship>:
+
++ addToShipList(Ship):void;
++ logClearanceCheck();
+}
+
+
+
+Ship --> Container
+ContainerType --> Container
+Customs --> Ship
+
+@enduml
